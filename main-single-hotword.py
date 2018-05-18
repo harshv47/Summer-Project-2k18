@@ -15,7 +15,7 @@ def interrupt_callback():
     return interrupted
 
 
-model = "/models/hey_bot.pmdl
+model = "/models/hey_bot.pmdl"
 
 # capture SIGINT signal, e.g., Ctrl+C
 signal.signal(signal.SIGINT, signal_handler)
@@ -26,7 +26,7 @@ detector = snowboydecoder.HotwordDetector(model, sensitivity=1)
 print('Listening... Press Ctrl+C to exit')
 
 # main loop
-detector.start(detected_callback=snowboydecoder.play_audio_file,
+detector.start(detected_callback=snowboydecoder.play_audio_file(snowboydecoder.DETECT_DING),
                interrupt_check=interrupt_callback,
                sleep_time=0.03)
 

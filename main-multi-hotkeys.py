@@ -24,7 +24,9 @@ models = <address of different hotwords (meaning .pmdl files) in the pi>
 # capture SIGINT signal, e.g., Ctrl+C
 signal.signal(signal.SIGINT, signal_handler)
 
-sensitivity = [0.5]*len(models)
+# you can play with sensitivity (should be something between 0 and 1), I set(ed?) to 1 because I built it at that
+# setting it to any other value may cause the sound to not get detected
+sensitivity = [1]*len(models)
 detector = snowboydecoder.HotwordDetector(models, sensitivity=sensitivity)
 """
 As an example:

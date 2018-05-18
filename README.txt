@@ -44,6 +44,13 @@ SWIG will generate a _snowboydetect.so file and a simple (but hard-to-read) pyth
 
 Feel free to adapt the Makefile in swig/Python to your own system's setting if you cannot make it
 
+Notes:
+
+The main- files are the main files that when excuted will start everything
+
+Before checking create a personal voice model at: https://snowboy.kitt.ai/
+It is recommended to use "hey bot" as if it reaches the 500 mark then a universal voice model would be created.
+Then replace/add the model in the folder models.Then change the address of model in whatever main- file you are running to your voice model.
 
 It is still not ready:
 

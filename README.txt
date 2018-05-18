@@ -43,3 +43,12 @@ make
 SWIG will generate a _snowboydetect.so file and a simple (but hard-to-read) python wrapper snowboydetect.py. We have provided a higher level python wrapper snowboydecoder.py on top of that.
 
 Feel free to adapt the Makefile in swig/Python to your own system's setting if you cannot make it
+
+
+It is still not ready:
+
+The creation of different python files are needed for each device or different classes in a single file.
+
+Major edits left in main-multi-hotkeys.py and main-google-speech-recognition-S2T.py
+
+Although main-single-hotword.py will run.

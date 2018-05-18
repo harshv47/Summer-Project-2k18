@@ -24,7 +24,9 @@ model = sys.argv[1]
 # capture SIGINT signal, e.g., Ctrl+C
 signal.signal(signal.SIGINT, signal_handler)
 
-detector = snowboydecoder.HotwordDetector(model, sensitivity=0.5)
+# you can play with sensitivity (should be something 0 to 1), I set(ed?) it to 1 because built the model with that
+# setting it to a different value may make it not detect the sound
+detector = snowboydecoder.HotwordDetector(model, sensitivity=1)
 print('Listening... Press Ctrl+C to exit')
 
 # main loop

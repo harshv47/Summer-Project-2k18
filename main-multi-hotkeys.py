@@ -2,7 +2,7 @@ import snowboydecoder
 #import sys
 import signal
 # Importing relay1.py to access relay functions defined therein
-from relay1 import Relay
+from S2T-default import S2T
 
 # Demo code for listening to two hotwords at the same time
 
@@ -24,9 +24,7 @@ models = <address of different hotwords (meaning .pmdl files) in the pi>
 # capture SIGINT signal, e.g., Ctrl+C
 signal.signal(signal.SIGINT, signal_handler)
 
-# you can play with sensitivity (should be something between 0 and 1), I set(ed?) to 1 because I built it at that
-# setting it to any other value may cause the sound to not get detected
-sensitivity = [1]*len(models)
+sensitivity = [0.5]*len(models)
 detector = snowboydecoder.HotwordDetector(models, sensitivity=sensitivity)
 """
 As an example:
@@ -37,8 +35,8 @@ relaypin= Relay(23)
 callbacks = [lambda: relay1.set_on,
              lambda: relay1.set_off]
 """
-callbacks = [lambda: <First callback>,
-             lambda: <Second callback>]
+callbacks = [lambda: snowboydecoder.play_audio_file(snowboydecoder.DETECT_DING),
+             lambda: S2T.main]
 print('Listening... Press Ctrl+C to exit')
 
 # main loop

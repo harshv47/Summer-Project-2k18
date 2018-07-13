@@ -1,6 +1,7 @@
 import snowboydecoder
 import sys
 import signal
+from S2T_default import S2T
 
 interrupted = False
 
@@ -14,19 +15,21 @@ def interrupt_callback():
     global interrupted
     return interrupted
 
+if len(sys.argv) == 1:
+    print("Error: need to specify model name")
+    print("Usage: python demo.py your.model")
+    sys.exit(-1)
 
-model = "/models/hey_bot.pmdl"
+model = sys.argv[1]
 
 # capture SIGINT signal, e.g., Ctrl+C
 signal.signal(signal.SIGINT, signal_handler)
 
-# you can play with sensitivity (should be something 0 to 1), I set(ed?) it to 1 because built the model with that
-# setting it to a different value may make it not detect the sound
-detector = snowboydecoder.HotwordDetector(model, sensitivity=1)
+detector = snowboydecoder.HotwordDetector(model, sensitivity=0.5)
 print('Listening... Press Ctrl+C to exit')
 
 # main loop
-detector.start(detected_callback=snowboydecoder.play_audio_file(snowboydecoder.DETECT_DING),
+detector.start(detected_callback=S2T.main,
                interrupt_check=interrupt_callback,
                sleep_time=0.03)
 
